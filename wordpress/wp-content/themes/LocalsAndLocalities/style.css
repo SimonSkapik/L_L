@@ -3376,7 +3376,7 @@ p > video {
 	}
 
 	.site-header {
-		padding: 5.25em 4.5455%;
+		padding: 3.25em 4.5455%;
 	}
 
 	.site-branding,
@@ -3950,4 +3950,20 @@ p > video {
 	.widecolumn {
 		padding: 0;
 	}
+}
+
+/************************
+/
+/   Custom_styles
+/
+************************/
+
+#site-navigation .menu-item a{
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+#site-navigation div{
+	float:left;
 }

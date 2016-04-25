@@ -24,6 +24,20 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
+ 
+ 
+////////////////////////////////////
+//
+//   Custom Functions
+//
+////////////////////////////////////
+
+function reg_menus(){
+	register_nav_menus( array('menu_left' => 'Main Menu Left', 'menu_right' => 'Main Menu Right', 'menu_full' => 'Main Menu Full'));
+}
+add_action( 'init', 'reg_menus' );
+ 
+ 
 
 /**
  * Twenty Sixteen only works in WordPress 4.4 or later.
