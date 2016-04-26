@@ -18,7 +18,6 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
 		<?php if ( have_posts() ) : ?>
 
 			<?php if ( is_home() && ! is_front_page() ) : ?>
@@ -40,6 +39,7 @@ get_header(); ?>
 
 			// End the loop.
 			endwhile;
+			
 
 			// Previous/next page navigation.
 			the_posts_pagination( array(
@@ -49,7 +49,7 @@ get_header(); ?>
 			) );
 
 		// If no content, include the "No posts found" template.
-		else :
+		else:
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif;

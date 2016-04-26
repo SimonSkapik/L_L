@@ -26,37 +26,68 @@
 	<div class="site-inner">
 		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'twentysixteen' ); ?></a>
 
-		<header id="masthead" class="site-header" role="banner">
+		<header id="masthead" class="site-header <?php if ( is_home() && is_front_page() ): ?>homapage<?php endif;?>" role="banner">
 			<div class="site-header-main">
 
 				<div id="site-header-menu" class="site-header-menu main-navigation">
 					<?php if ( is_home() && is_front_page() ) : ?>
 						<nav id="site-navigation" class="main-navigation" role="navigation" >
-						<?php
-						wp_nav_menu( array(
-							'name' => 'menu_left',
-							'menu_class' => 'primary-menu',
-							'theme_location' => 'menu_left'
-						 ) );
-						?>
-
-						<?php
-						wp_nav_menu( array(
-							'name' => 'menu_right',
-							'menu_class' => 'primary-menu',
-							'theme_location' => 'menu_right'
-						 ) );
-						?>
+							<table>
+								<tbody>
+									<tr>
+										<td class="half-menu">
+											<?php
+											wp_nav_menu( array(
+												'name' => 'menu_left',
+												'menu_class' => 'primary-menu f_right',
+												'theme_location' => 'menu_left'
+											 ) );
+											?>
+										</td>
+										<td id="mid-logo-td">
+											<div class="header-image">
+												<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+													<img src="<?php header_image(); ?>" srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( get_custom_header()->attachment_id ) ); ?>" sizes="<?php echo esc_attr( $custom_header_sizes ); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+												</a>
+											</div><!-- .header-image -->
+										</td>
+										<td class="half-menu">
+											<?php
+											wp_nav_menu( array(
+												'name' => 'menu_right',
+												'menu_class' => 'primary-menu f_left',
+												'theme_location' => 'menu_right'
+											 ) );
+											?>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</nav>
 					<?php else : ?>
 						<nav id="site-navigation" class="main-navigation" role="navigation" >
-						<?php
-						wp_nav_menu	( array(
-							'name' => 'menu_full',
-							'menu_class' => 'primary-menu',
-							'theme_location' => 'menu_full'
-						 ) );
-						?>
+							<table>
+								<tbody>
+									<tr>
+										<td id="left-logo-td">
+											<div class="header-image">
+												<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+													<img src="<?php header_image(); ?>" srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( get_custom_header()->attachment_id ) ); ?>" sizes="<?php echo esc_attr( $custom_header_sizes ); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+												</a>
+											</div><!-- .header-image -->
+										</td>
+										<td class="full-menu">
+											<?php
+											wp_nav_menu( array(
+												'name' => 'menu_full',
+												'menu_class' => 'primary-menu f_left',
+												'theme_location' => 'menu_full'
+											 ) );
+											?>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</nav>
 					<?php endif; ?>
 				</div><!-- .site-header-menu -->
@@ -76,12 +107,14 @@
 					 */
 					$custom_header_sizes = apply_filters( 'twentysixteen_custom_header_sizes', '(max-width: 709px) 85vw, (max-width: 909px) 81vw, (max-width: 1362px) 88vw, 1200px' );
 				?>
-				<div class="header-image">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img src="<?php header_image(); ?>" srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( get_custom_header()->attachment_id ) ); ?>" sizes="<?php echo esc_attr( $custom_header_sizes ); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
-					</a>
-				</div><!-- .header-image -->
 			<?php endif; // End header image check. ?>
 		</header><!-- .site-header -->
 
 		<div id="content" class="site-content">
+		<?php
+			if ( is_home() && is_front_page() ) :
+				do_action('slideshow_deploy', '37');
+				?><br /><br /><?php
+			endif;
+		?>
+		
